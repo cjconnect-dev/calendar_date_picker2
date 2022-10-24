@@ -92,22 +92,15 @@ class _MyHomePageState extends State<MyHomePage> {
     CalendarDatePicker2Type datePickerType,
     List<DateTime?> values,
   ) {
-    var valueText = (values.isNotEmpty ? values[0] : null)
-        .toString()
-        .replaceAll('00:00:00.000', '');
+    var valueText = (values.isNotEmpty ? values[0] : null).toString().replaceAll('00:00:00.000', '');
 
     if (datePickerType == CalendarDatePicker2Type.multi) {
-      valueText = values.isNotEmpty
-          ? values
-              .map((v) => v.toString().replaceAll('00:00:00.000', ''))
-              .join(', ')
-          : 'null';
+      valueText =
+          values.isNotEmpty ? values.map((v) => v.toString().replaceAll('00:00:00.000', '')).join(', ') : 'null';
     } else if (datePickerType == CalendarDatePicker2Type.range) {
       if (values.isNotEmpty) {
         final startDate = values[0].toString().replaceAll('00:00:00.000', '');
-        final endDate = values.length > 1
-            ? values[1].toString().replaceAll('00:00:00.000', '')
-            : 'null';
+        final endDate = values.length > 1 ? values[1].toString().replaceAll('00:00:00.000', '') : 'null';
         valueText = '$startDate to $endDate';
       } else {
         return 'null';
@@ -137,10 +130,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 borderRadius: BorderRadius.circular(15),
                 initialValue: _dialogCalendarPickerValue,
                 dialogBackgroundColor: Colors.white,
-                selectableDayPredicate: (day) => !day
-                    .difference(_dialogCalendarPickerValue[0]!
-                        .subtract(const Duration(days: 5)))
-                    .isNegative,
+                selectableDayPredicate: (day) =>
+                    !day.difference(_dialogCalendarPickerValue[0]!.subtract(const Duration(days: 5))).isNegative,
               );
               if (values != null) {
                 // ignore: avoid_print
@@ -190,11 +181,8 @@ class _MyHomePageState extends State<MyHomePage> {
         CalendarDatePicker2(
           config: config,
           initialValue: _singleDatePickerValueWithDefaultValue,
-          onValueChanged: (values) =>
-              setState(() => _singleDatePickerValueWithDefaultValue = values),
-          selectableDayPredicate: (day) => !day
-              .difference(DateTime.now().subtract(const Duration(days: 3)))
-              .isNegative,
+          onValueChanged: (values) => setState(() => _singleDatePickerValueWithDefaultValue = values),
+          selectableDayPredicate: (day) => !day.difference(DateTime.now().subtract(const Duration(days: 3))).isNegative,
         ),
         const SizedBox(height: 10),
         Row(
@@ -228,8 +216,7 @@ class _MyHomePageState extends State<MyHomePage> {
         CalendarDatePicker2(
           config: config,
           initialValue: _multiDatePickerValueWithDefaultValue,
-          onValueChanged: (values) =>
-              setState(() => _multiDatePickerValueWithDefaultValue = values),
+          onValueChanged: (values) => setState(() => _multiDatePickerValueWithDefaultValue = values),
         ),
         const SizedBox(height: 10),
         Wrap(
@@ -274,8 +261,7 @@ class _MyHomePageState extends State<MyHomePage> {
         CalendarDatePicker2(
           config: config,
           initialValue: _rangeDatePickerValueWithDefaultValue,
-          onValueChanged: (values) =>
-              setState(() => _rangeDatePickerValueWithDefaultValue = values),
+          onValueChanged: (values) => setState(() => _rangeDatePickerValueWithDefaultValue = values),
         ),
         const SizedBox(height: 10),
         Row(
@@ -308,8 +294,7 @@ class _MyHomePageState extends State<MyHomePage> {
         CalendarDatePicker2WithActionButtons(
           config: config,
           initialValue: _rangeDatePickerWithActionButtonsWithValue,
-          onValueChanged: (values) => setState(
-              () => _rangeDatePickerWithActionButtonsWithValue = values),
+          onValueChanged: (values) => setState(() => _rangeDatePickerWithActionButtonsWithValue = values),
         ),
         const SizedBox(height: 10),
         Row(
